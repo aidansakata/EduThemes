@@ -70,7 +70,7 @@ const Chatbot = ({ sessionId, currentStage, projectMetadata }) => {
     setIsLoading(true);
     
     try {
-      const response = await axios.post(`http://localhost:1500/session/${sessionId}/analyze-text`, {
+      const response = await axios.post(`https://eduthemes.onrender.com/session/${sessionId}/analyze-text`, {
         message: userMessage,
         currentStage: currentStage,
         apiKey: projectMetadata?.apiKey || ""

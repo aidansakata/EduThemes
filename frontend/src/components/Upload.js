@@ -57,7 +57,7 @@ const Upload = ({ sessionId, onAdvanceStage, setDataset, setVisualization, setPr
 
         setIsLoading(true);
         try {
-            const response = await axios.post(`http://localhost:1500/session/${sessionId}/upload-dataset`, formData, {
+            const response = await axios.post(`https://eduthemes.onrender.com/session/${sessionId}/upload-dataset`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

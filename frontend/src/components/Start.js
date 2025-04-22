@@ -9,7 +9,7 @@ const Start = ({ onSessionStart, onAdvanceStage, setLabels }) => {
     const startSession = async () => {
         try {
             setLabels([]);
-            const response = await axios.post('http://localhost:1500/session/start');
+            const response = await axios.post('https://eduthemes.onrender.com/session/start');
             onSessionStart(response.data.session_id);
             onAdvanceStage();
         } catch (error) {

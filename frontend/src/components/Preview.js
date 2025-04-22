@@ -85,7 +85,7 @@ const Preview = ({
                 setSuggestedThemes([]);
             }
             
-            const response = await axios.post(`http://localhost:1500/session/${sessionId}/suggest-themes`, {
+            const response = await axios.post(`https://eduthemes.onrender.com/session/${sessionId}/suggest-themes`, {
                 labels: labels,
                 apiKey: projectMetadata.apiKey
             });
@@ -133,7 +133,7 @@ const Preview = ({
 
             console.log(`Submitting ${manualCodings.length} manually coded responses`);
 
-            const response = await axios.post(`http://localhost:1500/session/${sessionId}/submit-manual-coding`, {
+            const response = await axios.post(`https://eduthemes.onrender.com/session/${sessionId}/submit-manual-coding`, {
                 labels,
                 manual_codings: manualCodings,
                 apiKey: projectMetadata.apiKey
