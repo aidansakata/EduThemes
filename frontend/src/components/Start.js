@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import axios from 'axios';
 import { FaFileAlt, FaSyncAlt, FaListUl, FaLightbulb } from 'react-icons/fa';
-import { MdHeight } from 'react-icons/md';
+import axios from 'axios';
 
 const Start = ({ onSessionStart, onAdvanceStage, setLabels }) => {
+    const [isProcessing, setIsProcessing] = useState(false); // State to track processing
 
     const startSession = async () => {
+        setIsProcessing(true); // Set processing state to true
         try {
             setLabels([]);
             const response = await axios.post('https://eduthemes.onrender.com/session/start');
@@ -14,6 +15,8 @@ const Start = ({ onSessionStart, onAdvanceStage, setLabels }) => {
             onAdvanceStage();
         } catch (error) {
             console.error('Session start error:', error.response || error);
+        } finally {
+            setIsProcessing(false); // Reset processing state
         }
     };
 
@@ -94,16 +97,17 @@ const Start = ({ onSessionStart, onAdvanceStage, setLabels }) => {
                     <Button
                         variant="primary"
                         onClick={startSession}
+                        disabled={isProcessing} // Disable button when processing
                         style={{
                             fontWeight: 'bold',
                             padding: '10px 20px',
                             fontSize: '16px',
                         }}
                     >
-                        Start Analysis
+                        {isProcessing ? "Processing..." : "Start Analysis"} {/* Change button text */}
                     </Button>
                 </div>
-                <hr/>
+                <hr />
                 <div>
                     <div style={sectionTitleStyle}>Features</div>
                     <div style={featuresStyle}>
@@ -125,7 +129,7 @@ const Start = ({ onSessionStart, onAdvanceStage, setLabels }) => {
                         </div>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 <div style={{
                     fontSize: '24px',
                     fontWeight: '600',
